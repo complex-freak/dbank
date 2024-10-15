@@ -3,31 +3,28 @@ import Time "mo:base/Time";
 import Float "mo:base/Float";
 
 actor DBank {
-  stable var currentValue: Float = 300;
+  stable var currentValue : Float = 300;
   // currentValue := 300;
 
   stable var startTime = Time.now();
   // startTime := Time.now();
 
-  // Debug.print(debug_show(startTime));
-
-  public func topUp(amount: Float) {
+  public func topUp(amount : Float) {
     currentValue += amount;
-    Debug.print(debug_show(currentValue));
+    Debug.print(debug_show (currentValue));
   };
 
-  public func withdraw(amount: Float) {
-    let tempVal: Float = currentValue - amount;
+  public func withdraw(amount : Float) {
+    let tempVal : Float = currentValue - amount;
     if (tempVal >= 0) {
       currentValue -= amount;
-      Debug.print(debug_show(currentValue));
-    }
-    else {
+      Debug.print(debug_show (currentValue));
+    } else {
       Debug.print("Insufficient funds");
-    }
+    };
   };
 
-  public query func checkBalance(): async Float {
+  public query func checkBalance() : async Float {
     return currentValue;
   };
 
@@ -38,8 +35,5 @@ actor DBank {
 
     currentValue := currentValue * (1.01 ** Float.fromInt(timeElapsedS));
     startTime := currentTime;
-  }
-
-  // topUp();
-  
-}
+  };
+};
